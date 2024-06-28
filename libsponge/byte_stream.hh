@@ -15,9 +15,13 @@ class ByteStream {
     // Hint: This doesn't need to be a sophisticated data structure at
     // all, but if any of your tests are taking longer than a second,
     // that's a sign that you probably want to keep exploring
-    // different approaches.
-
-    bool _error{};  //!< Flag indicating that the stream suffered an error.
+    // differen approaches.
+    std::deque<char> _queue;
+    size_t _capacity_size;
+    size_t _written_size;
+    size_t _read_size;
+    bool _end_input;
+    bool _error{}; //!< Flag indicating that the stream suffered an error.
 
   public:
     //! Construct a stream with room for `capacity` bytes.
@@ -82,4 +86,4 @@ class ByteStream {
     //!@}
 };
 
-#endif  // SPONGE_LIBSPONGE_BYTE_STREAM_HH
+#endif // SPONGE_LIBSPONGE_BYTE_STREAM_HH

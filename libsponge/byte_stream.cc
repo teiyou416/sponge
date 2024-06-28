@@ -5,25 +5,31 @@
 // For Lab 0, please replace with a real implementation that passes the
 // automated checks run by `make check_lab0`.
 
-// You will need to add private members to the class declaration in `byte_stream.hh`
+// You will need to add private members to the class declaration in
+// `byte_stream.hh`
 
-template <typename... Targs>
-void DUMMY_CODE(Targs &&... /* unused */) {}
+template <typename... Targs> void DUMMY_CODE(Targs &&.../* unused */) {}
 
 using namespace std;
 
-ByteStream::ByteStream(const size_t capacity) { DUMMY_CODE(capacity); }
+ByteStream::ByteStream(const size_t capacity) {
+    _queue(), _capacity_size(capacity), _written_size(0)._read_size(0),
+        _end_input(false), _error(false){};
+}
 
 size_t ByteStream::write(const string &data) {
-    DUMMY_CODE(data);
-    return {};
+    if (_end_input)
+        return 0;
+    size_t write_size = min(data.size(), _capacity_size() - _queue.size());
+    _written_size += write_size;
+    for (size_t i; i < write_size; i++) {
+        _queue.push_back(data[i]);
+    }
+    return write_size;
 }
 
 //! \param[in] len bytes will be copied from the output side of the buffer
-string ByteStream::peek_output(const size_t len) const {
-    DUMMY_CODE(len);
-    return {};
-}
+string ByteStream::peek_output(const size_t len) const { return {}; }
 
 //! \param[in] len bytes will be removed from the output side of the buffer
 void ByteStream::pop_output(const size_t len) { DUMMY_CODE(len); }
